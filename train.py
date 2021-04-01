@@ -35,7 +35,7 @@ def main():
     model = DecisionTreeClassifier(criterion=args.criterion,
                                    max_depth=args.max_depth,
                                    min_samples_split=args.min_samples_split,
-                                   min_samples_leaf=min_samples_leaf,
+                                   min_samples_leaf=args.min_samples_leaf,
                                    random_state=1).fit(xtrain,ytrain)
 
     accuracy = model.score(xtest,ytest)
