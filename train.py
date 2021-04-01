@@ -20,8 +20,8 @@ xtrain,xtest,ytrain,ytest = train_test_split(x,y,test_size=0.2,random_state=1)
 def main():
     # Add arguments to script for HyperDrive
     parser = argparse.ArgumentParser()
-    parser.add_argument('--criterion',type=string,default='gini',help='The function to measure the quality of a split. Supported criteria are “gini” for the Gini impurity and “entropy” for the information gain.')
-    parser.add_argument('--max_depth',type=integer,default=None,help='The maximum depth of the tree.')
+    parser.add_argument('--criterion',type=str,default='gini',help='The function to measure the quality of a split. Supported criteria are “gini” for the Gini impurity and “entropy” for the information gain.')
+    parser.add_argument('--max_depth',type=int,default=None,help='The maximum depth of the tree.')
     parser.add_argument('--min_samples_split',type=int,default=2,help='he minimum number of samples required to split an internal node')
     parser.add_argument('--min_samples_leaf',type=int,default=1,help='The minimum number of samples required to be at a leaf node')
 
@@ -29,7 +29,7 @@ def main():
     run.log('Criterion: ',args.criterion)
     run.log('max_depth: ', args.max_depth)
     run.log('min_samples_split: ', args.min_samples_split)
-    run.log('min_samples_leaf: ', min_samples_leaf)
+    run.log('min_samples_leaf: ', args.min_samples_leaf)
 
     # create your model here
     model = DecisionTreeClassifier(criterion=args.criterion,
@@ -42,6 +42,7 @@ def main():
     mse = mean_squared_error(ytest,model.predict(xtest))
     run.log('Accuracy',np.float(accuracy))
     run.log('mse', np.float(mse))
+    run.complete()
 
 if __name__ == '__main__':
     main()
