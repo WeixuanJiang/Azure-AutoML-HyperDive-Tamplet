@@ -19,7 +19,7 @@ xtrain,xtest,ytrain,ytest = train_test_split(x,y,test_size=0.2,random_state=1)
 # create machine learning model
 def main():
     # Add arguments to script for HyperDrive
-    parser = argparser.ArgumentParser()
+    parser = argparse.ArgumentParser()
     parser.add_argument('--criterion',type=string,default='gini',help='The function to measure the quality of a split. Supported criteria are “gini” for the Gini impurity and “entropy” for the information gain.')
     parser.add_argument('--max_depth',type=integer,default=None,help='The maximum depth of the tree.')
     parser.add_argument('--min_samples_split',type=int,default=2,help='he minimum number of samples required to split an internal node')
