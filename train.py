@@ -1,5 +1,6 @@
 import argparse
 import os
+import joblib
 import numpy as np
 from sklearn.metrics import mean_squared_error
 # import your ml model here 
@@ -41,8 +42,9 @@ def main():
     accuracy = model.score(xtest,ytest)
     mse = mean_squared_error(ytest,model.predict(xtest))
     run.log('Accuracy',np.float(accuracy))
-    run.log('mse', np.float(mse))
-    run.complete()
+#     run.log('mse', np.float(mse))
+    os.makedirs('./outputs', exist_ok=True)
+    joblib.dump(value=model, filename='./outputs/model.joblib')
 
 if __name__ == '__main__':
     main()
